@@ -8,11 +8,11 @@ const Sidebar = () => {
       {/* Logo Section */}
       <div>
         <Image
-          src="/logo-Marshee1.webp"
+          src="/logo_marshee_transparent.png"
           width={96}
           height={70}
           alt="home"
-          className="bg-transparent"
+          className="bg-transparent opacity-40"
         />
       </div>
 
