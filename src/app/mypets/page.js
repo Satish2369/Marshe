@@ -1,11 +1,12 @@
 
 
-const Home = () => {
+
+const page = () => {
   return (
     <div className=" mt-[10vw] p-4">
-       home page
+       my pets
     </div>
   )
 }
 
-export default Home;
+export default page
