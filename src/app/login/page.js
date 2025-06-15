@@ -1,13 +1,14 @@
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
-import Login from "@/Components/Login";
+const Login = dynamic(() => import("@/Components/Login"), { ssr: false });
+
 const page = () => {
   return (
-    <div>
-       <Login />
-    </div>
-  )
-}
+    <Suspense fallback={<div>Loading...</div>}>
+      <Login />
+    </Suspense>
+  );
+};
 
 export default page;
-
-
