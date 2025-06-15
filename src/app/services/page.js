@@ -1,10 +1,12 @@
 
-
+import ProtectedRoute from "@/Components/ProtectedRoute";
 const Page = () => {
   return (
-    <div className=" mt-[10vw] p-4">
-       pet care
+<ProtectedRoute>
+      <div className=" mt-[10vw] p-4">
+       my pet
     </div>
+    </ProtectedRoute>
   )
 }
 

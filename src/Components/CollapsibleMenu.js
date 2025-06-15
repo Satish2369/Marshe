@@ -2,15 +2,38 @@
 import Link from "next/link";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { removeUser } from "@/redux/slices/userSlice"; // adjust path as needed
+import { BASE_URL } from "@/utils/constant"; // adjust path as needed
+
 
 const CollapsibleMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(BASE_URL+"/logout",{}, {
+        withCredentials: true,
+      });
+      console.log("Logout successful");
+      dispatch(removeUser());
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <div className="fixed right-0 top-0 h-full z-50 flex">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`h-12 w-12 absolute mt-4 mr-6 right-0 z-10 flex items-center justify-center `}
+        className={`h-12 w-12 absolute mt-4 mr-6 right-0 z-10 flex items-center justify-center cursor-pointer`}
       >
         {isOpen ? (
           <RxCross2 size={36} className="text-[#333333]" />
@@ -28,28 +51,32 @@ const CollapsibleMenu = () => {
       >
         <div className="mt-[12vw]">
           <ul className="space-y-1 text-black ">
-            {[
-              "Profile",
-              "Notifications",
-              "orders",
-              "Wallet",
-              "Settings",
-              "login",
-            ].map((item) => (
-              <li key={item} className="m-8">
-                {item !== "login" ? (
+            {["Profile", "Notifications", "Orders", "Wallet", "Settings"].map(
+              (item) => (
+                <li key={item} className="m-8">
                   <button className="w-full text-center p-2 hover:bg-gray-100 rounded cursor-pointer">
                     {item}
                   </button>
-                ) : (
-                  <Link href="/login">
-                    <button className="w-full text-center text-white p-2 bg-[#320505] rounded cursor-pointer">
-                      {item}
-                    </button>
-                  </Link>
-                )}
-              </li>
-            ))}
+                </li>
+              )
+            )}
+
+            <li className="m-8">
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-center text-white p-2 bg-red-600 rounded cursor-pointer"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link href="/login">
+                  <button className="w-full text-center text-white p-2 bg-[#320505] rounded cursor-pointer">
+                    Login
+                  </button>
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
       </div>

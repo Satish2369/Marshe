@@ -10,3 +10,8 @@ export const categories = [
   { name: "Hamster", icon: <FaOtter /> },
   { name: "Rabbit", icon: <GiRabbit /> },  
 ];
+
+
+ export const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
+
+

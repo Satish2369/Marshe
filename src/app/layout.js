@@ -1,8 +1,6 @@
-// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/Components/ReduxProvider";
-// const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-// const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+import LayoutWrapper from "@/Components/LayoutWrapper"; // <- move logic here
 
 export const metadata = {
   title: "Marshee",
@@ -12,12 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={` antialiased bg-black text-white`}>
-      
-         <ReduxProvider> 
-           {children}
-          
-          </ReduxProvider>
+      <body className="antialiased bg-black text-white">
+        <ReduxProvider>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </ReduxProvider>
       </body>
     </html>
   );
