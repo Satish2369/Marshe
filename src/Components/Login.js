@@ -20,7 +20,7 @@ const Login = () => {
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("redirect") || "/";
 
-  //  console.log("BASE_URL:", BASE_URL);
+    console.log("BASE_URL:", BASE_URL);
 
   const handleSubmit = async () => {
     const endpoint = isLogin ? "/login" : "/signup";
@@ -41,7 +41,7 @@ const Login = () => {
           router.push(redirectPath);
 
     } catch (error) {
-      // console.log(BASE_URL);
+       console.log(BASE_URL);
       console.error("Error:", error.response?.data || error.message);
     }
   };
