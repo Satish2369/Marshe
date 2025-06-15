@@ -24,7 +24,7 @@ const Login = () => {
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("redirect") || "/";
 
-
+   console.log("BASE_URL:", BASE_URL);
 
   const handleSubmit = async () => {
     const endpoint = isLogin ? "/login" : "/signup";
@@ -35,16 +35,17 @@ const Login = () => {
     try {
 
      
- 
+        console.log(BASE_URL);
       const { data } = await axios.post(BASE_URL+endpoint, payload, {
         withCredentials: true, // for JWT in cookies
       });
       console.log(" Success:", data);
-      
+      console.log(BASE_URL);
         dispatch(addUser(data.data));
           router.push(redirectPath);
 
     } catch (error) {
+      console.log(BASE_URL);
       console.error("Error:", error.response?.data || error.message);
     }
   };
