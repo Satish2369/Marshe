@@ -1,13 +1,12 @@
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
-const Login = dynamic(() => import("@/Components/Login"), { ssr: false });
+import Login from "@/Components/Login";
 
 const page = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div>
       <Login />
-    </Suspense>
+    </div>
   );
 };
 

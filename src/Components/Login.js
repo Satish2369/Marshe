@@ -5,7 +5,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/redux/slices/userSlice";
-
 import { useSearchParams } from "next/navigation"; 
 import { BASE_URL } from "@/utils/constant";
 
