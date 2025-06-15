@@ -11,9 +11,5 @@ export const categories = [
   { name: "Rabbit", icon: <GiRabbit /> },  
 ];
 
-export const BASE_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL ||
-  (process.env.NODE_ENV === "development" 
-    ? "http://localhost:5000" 
-    : "https://marshe-backend.onrender.com");
+export const BASE_URL =  process.env.NODE_ENV === "development" ? "http://localhost:5000" : "process.env.NEXT_PUBLIC_BASE_URL";
 
